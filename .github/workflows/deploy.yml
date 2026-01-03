@@ -15,16 +15,16 @@ jobs:
 
       - name: Create SSH key file
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/ci_key
-          chmod 600 ~/.ssh/ci_key
+          mkdir -p /github/home/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > /github/home/.ssh/ci_key
+          chmod 600 /github/home/.ssh/ci_key
 
       - name: Deploy to EC2 via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
-          key_path: ~/.ssh/ci_key
+          key_path: /github/home/.ssh/ci_key
           port: 22
           script: |
             cd ~/Tejas-Mene-Portfolio
