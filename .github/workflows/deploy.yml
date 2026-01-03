@@ -16,7 +16,7 @@ jobs:
       - name: Create SSH key file
         run: |
           echo "${{ secrets.EC2_SSH_KEY }}" > ci_key
-          chmod 600 ci_key
+          chmod 644 ci_key
 
       - name: Deploy to EC2 via SSH
         uses: appleboy/ssh-action@v1.0.3
